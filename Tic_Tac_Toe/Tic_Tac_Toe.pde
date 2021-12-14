@@ -1,28 +1,45 @@
+int Spielfeldbreite = 800;
+int Spielfeldhohe = 800;
+int offsetX = 10;
+int offsetY = 10;
+
 void setup(){
+  //size(Spielfeldbreite,Spielfeldhohe);
   size(800,800);
 }
 
 void draw(){
   //Zwei waagrechte Linien
-  line(10,267,800,267);
-  line(10,534,800,534);
+  line(offsetX,Spielfeldhohe/3,Spielfeldbreite,Spielfeldhohe/3);
+  line(offsetX,Spielfeldhohe*2/3,Spielfeldbreite,Spielfeldhohe*2/3);
   
   // Zwei senkrechte Linien
-   line(267,10,267,800);
-   line(534,10,534,800);
-   drawX();
-   draw0();
+   line(Spielfeldbreite/3,offsetY,Spielfeldbreite/3,Spielfeldhohe);
+   line(Spielfeldbreite*2/3,offsetY,Spielfeldbreite*2/3,Spielfeldhohe);
+   
 }
 
-void drawX(){
+void drawX(int x,int y){
   //Zeichnet "X"
-  line(267,10,534, 267);
-  line(534,10,267, 267);
+  int XKoordinate = Spielfeldbreite*x/3;
+  int YKoordinate = Spielfeldhohe*y/3;
+  int XEndKoordinate = Spielfeldbreite/3+XKoordinate;
+  int YEndKoordinate = Spielfeldhohe/3+YKoordinate;
+  
+  line(XKoordinate,YKoordinate,XEndKoordinate,YEndKoordinate);
+  line(XEndKoordinate,YKoordinate,XKoordinate,YEndKoordinate );
 }
 
 void draw0(){
   //Zeichnet "0"
   circle(width/6,height/6,250);
+}
+
+void mouseClicked(){
+  int X = 3*mouseX/Spielfeldbreite;
+  int Y = 3*mouseY/Spielfeldhohe;
+  drawX(X,Y);
+  
 }
 
 
