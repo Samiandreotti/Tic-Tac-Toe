@@ -30,15 +30,21 @@ void drawX(int x,int y){
   line(XEndKoordinate,YKoordinate,XKoordinate,YEndKoordinate );
 }
 
-void draw0(){
+void draw0(int x, int y){
   //Zeichnet "0"
-  circle(width/6,height/6,250);
+  int XKoordinate = Spielfeldbreite*x/3;
+  int YKoordinate = Spielfeldhohe*y/3;
+  int XMittelpunkt = Spielfeldbreite/6+XKoordinate;
+  int YMittelpunkt = Spielfeldhohe/6+YKoordinate;
+  
+  circle(XMittelpunkt,YMittelpunkt,Spielfeldbreite/3);
 }
 
 void mouseClicked(){
   int X = 3*mouseX/Spielfeldbreite;
   int Y = 3*mouseY/Spielfeldhohe;
   drawX(X,Y);
+  draw0(X,Y);
   
 }
 
